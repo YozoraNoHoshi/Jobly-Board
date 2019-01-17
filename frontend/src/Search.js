@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import JoblyApi from './JoblyApi';
 
 class Search extends Component {
   constructor(props) {
@@ -16,11 +17,8 @@ class Search extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    if (this.props.from === 'companies') {
-      // do things
-    } else {
-      // do jobs things
-    }
+
+    this.props.search(this.state);
   };
 
   render() {
@@ -29,6 +27,7 @@ class Search extends Component {
         <form onSubmit={this.handleSubmit} className="form">
           <div className="form-group d-flex flex-nowrap">
             <input
+              name="search"
               type="text"
               placeholder="Enter Search term"
               onChange={this.handleChange}

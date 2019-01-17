@@ -31,10 +31,16 @@ class JobList extends Component {
   renderContent = () => {
     return (
       <div className="JobList col-8">
-        <Search />
+        <Search search={this.search} />
         {this.renderJobs(this.state.jobs)}
       </div>
     );
+  };
+
+  search = async search => {
+    let jobs = await JoblyApi.getJobs(search);
+
+    this.setState({ jobs });
   };
 
   render() {

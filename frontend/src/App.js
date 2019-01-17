@@ -8,11 +8,11 @@ import JoblyApi from './JoblyApi';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { token: undefined, user: {} };
+    this.state = { token: localStorage.getItem('token'), user: {} };
   }
 
-  componentDidMount() {
-    this.updateToken();
+  async componentDidMount() {
+    await this.updateToken();
   }
 
   updateToken = async () => {

@@ -33,10 +33,16 @@ class CompanyList extends Component {
   renderContent = () => {
     return (
       <div className="CompanyList col-8">
-        <Search />
+        <Search search={this.search} />
         {this.renderCompanies(this.state.companies)}
       </div>
     );
+  };
+
+  search = async search => {
+    let companies = await JoblyApi.getCompanies(search);
+
+    this.setState({ companies });
   };
 
   render() {

@@ -15,8 +15,7 @@ class JoblyApi {
       return (await axios({
         method: verb,
         url: `http://localhost:3001/${endpoint}`,
-        [verb === 'GET' ? 'params' : 'data']: params,
-        params
+        [verb === 'GET' ? 'params' : 'data']: params
       })).data;
     } catch (err) {
       console.error('API Error:', err.response);
@@ -33,12 +32,12 @@ class JoblyApi {
     let res = await this.request(`users/${handle}`);
     return res.user;
   }
-  static async getCompanies() {
-    let res = await this.request(`companies`);
+  static async getCompanies(search = {}) {
+    let res = await this.request(`companies`, search);
     return res.companies;
   }
-  static async getJobs() {
-    let res = await this.request(`jobs`);
+  static async getJobs(search = {}) {
+    let res = await this.request(`jobs`, search);
     return res.jobs;
   }
   static async signUpUser(data) {
