@@ -30,7 +30,7 @@ class JobList extends Component {
 
   renderContent = () => {
     return (
-      <div className="JobList">
+      <div className="JobList col-8">
         <Search />
         {this.renderJobs(this.state.jobs)}
       </div>

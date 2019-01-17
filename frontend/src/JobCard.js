@@ -20,11 +20,13 @@ class JobCard extends Component {
 
   render() {
     return (
-      <div className="JobCard">
-        <div>{this.props.job.title}</div>
+      <div className="JobCard border mt-2 p-2">
+        <p className="font-weight-bold">{this.props.job.title}</p>
         <div>Salary: {this.props.job.salary}</div>
         <div>Equity: {this.props.job.equity}</div>
-        <button>Apply</button>
+        <div className="d-flex justify-content-end">
+          <button className="btn btn-danger font-weight-bold">APPLY</button>
+        </div>
       </div>
     );
   }

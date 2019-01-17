@@ -33,8 +33,8 @@ class Company extends Component {
   };
   renderContent = () => {
     return (
-      <div className="Company">
-        <div>{this.state.company.name}</div>
+      <div className="Company col-6 mt-2">
+        <h3>{this.state.company.name}</h3>
         <p>{this.state.company.description}</p>
         <div>{this.renderJobs(this.state.company.jobs)}</div>
       </div>

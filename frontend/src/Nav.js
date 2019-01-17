@@ -54,7 +54,7 @@ class Nav extends Component {
   render() {
     return (
       <div className="Nav">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light border-bottom">
           <NavLink className="navbar-brand" exact to="/">
             Jobly
           </NavLink>
@@ -88,32 +88,6 @@ class Nav extends Component {
       </div>
     );
   }
-
-  /*
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-*/
 }
 
 Nav.defaultProps = {};
