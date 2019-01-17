@@ -21,12 +21,12 @@ class Login extends Component {
     });
   };
 
-  handleSubmit = evt => {
+  handleSubmit = async evt => {
     evt.preventDefault();
     let { login, ...state } = this.state;
     console.log(this.state);
-    this.props.loginSignUp(state, login);
-    this.props.history.push('/');
+    let success = await this.props.loginSignUp(state, login);
+    if (success) this.props.history.push('/');
   };
 
   handleClick = evt => {

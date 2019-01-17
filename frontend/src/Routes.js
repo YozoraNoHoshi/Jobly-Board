@@ -6,44 +6,47 @@ import Company from './Company';
 import JobList from './JobList';
 import Login from './Login';
 import Profile from './Profile';
-import JoblyApi from './JoblyApi';
+import PrivateRoute from './PrivateRoute';
 class Routes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  loginSignUp = async (formData, login) => {
-    let token;
-    if (login) {
-      // User is trying to login
-      token = await JoblyApi.loginUser(formData);
-    } else {
-      // User is trying to sign up
-      token = await JoblyApi.signUpUser(formData);
-    }
-    localStorage.setItem('token', token);
-    this.props.updateToken();
-  };
+  // loginSignUp = async (formData, login) => {
+  //   let token;
+  //   if (login) {
+  //     // User is trying to login
+  //     token = await JoblyApi.loginUser(formData);
+  //   } else {
+  //     // User is trying to sign up
+  //     token = await JoblyApi.signUpUser(formData);
+  //   }
+  //   localStorage.setItem('token', token);
+  //   return this.props.updateToken();
+  // };
 
-  editProfile = async formData => {
-    let username = this.props.user.username;
-    let { password, photo_url } = formData;
-    if (!photo_url) {
-      formData = { ...formData };
-      delete formData.photo_url;
-    }
-    let token = await JoblyApi.loginUser({ username, password });
-    if (token) {
-      await JoblyApi.updateUser(username, formData);
-      this.props.updateToken();
-    }
-  };
+  // editProfile = async formData => {
+  //   let username = this.props.user.username;
+  //   let { password, ...data } = formData;
+  //   let token = await JoblyApi.loginUser({ username, password });
+  //   if (token) {
+  //     await JoblyApi.updateUser(username, data);
+  //     return this.props.updateToken();
+  //   }
+  //   return false;
+  // };
 
   render() {
     return (
       <Switch>
         <Route exact path="/" render={props => <Home {...props} />} />
         <Route
+          exact
+          path="/companies"
+          render={props => (
+            <PrivateRoute
+              token={this.props.token}
+              component={<CompanyList token={this.props.token} {...props} />}
+            />
+          )}
+        />
+        {/* <Route
           exact
           path="/companies"
           render={props =>
@@ -53,33 +56,51 @@ class Routes extends Component {
               <Redirect to="/login" />
             )
           }
-        />
+        /> */}
         <Route
           exact
           path="/companies/:company"
-          render={props =>
-            this.props.token ? (
-              <Company token={this.props.token} {...props} />
-            ) : (
-              <Redirect to="/login" />
+          render={
+            props => (
+              <PrivateRoute
+                token={this.props.token}
+                component={<Company token={this.props.token} {...props} />}
+              />
             )
+            // this.props.token ? (
+            //   <Company token={this.props.token} {...props} />
+            // ) : (
+            //   <Redirect to="/login" />
+            // )
           }
         />
         <Route
           exact
           path="/jobs"
-          render={props =>
-            this.props.token ? (
-              <JobList token={this.props.token} {...props} />
-            ) : (
-              <Redirect to="/login" />
+          render={
+            props => (
+              <PrivateRoute
+                token={this.props.token}
+                component={<JobList token={this.props.token} {...props} />}
+              />
             )
+            // this.props.token ? (
+            //   <JobList token={this.props.token} {...props} />
+            // ) : (
+            //   <Redirect to="/login" />
+            // )
           }
         />
         <Route
           exact
           path="/login"
-          render={props => <Login loginSignUp={this.loginSignUp} {...props} />}
+          render={props =>
+            this.props.token ? (
+              <Redirect to="/" />
+            ) : (
+              <Login loginSignUp={this.props.loginSignUp} {...props} />
+            )
+          }
         />
         <Route
           exact
@@ -87,7 +108,7 @@ class Routes extends Component {
           render={props =>
             this.props.token ? (
               <Profile
-                editProfile={this.editProfile}
+                editProfile={this.props.editProfile}
                 token={this.props.token}
                 user={this.props.user}
                 {...props}
@@ -103,5 +124,10 @@ class Routes extends Component {
   }
 }
 
-Routes.defaultProps = {};
+Routes.defaultProps = {
+  token: '',
+  editProfile: console.log,
+  user: {},
+  loginSignUp: console.log
+};
 export default Routes;

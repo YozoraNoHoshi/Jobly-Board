@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.state = { token: '', user: {} };
   }
+
   componentDidMount() {
     this.updateToken();
   }
@@ -21,23 +22,50 @@ class App extends Component {
       let { username } = JSON.parse(atob(decodeToken));
       let user = await JoblyApi.getUser(username);
       this.setState({ token, user });
+      return true;
     } else {
       this.setState({ token: '', user: {} });
+      return false;
     }
+  };
+
+  loginSignUp = async (formData, login) => {
+    let token;
+    if (login) {
+      // User is trying to login
+      token = await JoblyApi.loginUser(formData);
+    } else {
+      // User is trying to sign up
+      token = await JoblyApi.signUpUser(formData);
+    }
+    localStorage.setItem('token', token);
+    return this.updateToken();
+  };
+
+  editProfile = async formData => {
+    let username = this.state.user.username;
+    let { password, ...data } = formData;
+    let token = await JoblyApi.loginUser({ username, password });
+    if (token) {
+      await JoblyApi.updateUser(username, data);
+      return this.updateToken();
+    }
+    return false;
   };
 
   render() {
     return (
       <div className="App">
         <Nav
-          updateToken={this.updateToken}
           token={this.state.token}
+          updateToken={this.updateToken}
           user={this.state.user}
         />
         <Routes
-          updateToken={this.updateToken}
           token={this.state.token}
           user={this.state.user}
+          loginSignUp={this.loginSignUp}
+          editProfile={this.editProfile}
         />
       </div>
     );

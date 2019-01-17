@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
-class Home extends Component {
+class PrivateRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -19,12 +20,12 @@ class Home extends Component {
   };
 
   render() {
-    return <div className="Home">Home</div>;
+    return this.props.token ? this.props.component : <Redirect to="/login" />;
   }
 }
 
-Home.defaultProps = {};
+PrivateRoute.defaultProps = { token: '', component: <div /> };
 
-Home.propTypes = {};
+PrivateRoute.propTypes = {};
 
-export default Home;
+export default PrivateRoute;

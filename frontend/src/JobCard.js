@@ -14,7 +14,7 @@ class JobCard extends Component {
     });
   };
 
-  handleSubmit = evt => {
+  handleClick = evt => {
     evt.preventDefault();
   };
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import JoblyApi from './JoblyApi';
 
 class Profile extends Component {
   constructor(props) {
@@ -21,9 +20,14 @@ class Profile extends Component {
     });
   };
 
-  handleSubmit = evt => {
+  handleSubmit = async evt => {
     evt.preventDefault();
-    this.props.editProfile(this.state);
+    let { photo_url, ...state } = this.state;
+    if (photo_url) {
+      state.photo_url = photo_url;
+    }
+    let success = await this.props.editProfile(state);
+    if (success) this.props.history.push('/');
   };
 
   render() {
@@ -75,7 +79,7 @@ class Profile extends Component {
   }
 }
 
-Profile.defaultProps = {};
+Profile.defaultProps = { user: {} };
 
 Profile.propTypes = {};
 

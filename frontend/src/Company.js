@@ -5,7 +5,7 @@ import JobCard from './JobCard';
 class Company extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { company: {} };
   }
 
   async componentDidMount() {
