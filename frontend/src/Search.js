@@ -25,14 +25,19 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="Search">
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="Enter Search term"
-            onChange={this.handleChange}
-          />
-          <button type="submit">Submit</button>
+      <div className="Search mt-3">
+        <form onSubmit={this.handleSubmit} className="form-inline">
+          <div className="form-group col-12">
+            <input
+              type="text"
+              placeholder="Enter Search term"
+              onChange={this.handleChange}
+              className="form-control search-input"
+            />
+            <button type="submit" className="btn btn-primary search-submit">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     );

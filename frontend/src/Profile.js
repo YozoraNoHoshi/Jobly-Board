@@ -32,47 +32,85 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="Profile">
-        <div>Profile</div>
+      <div className="Profile border rounded p-3 mt-3 col-4">
+        <h2>Profile</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label>
-          <div>{this.props.user.username}</div>
-          <label htmlFor="first_name">First Name</label>
-          <input
-            name="first_name"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.first_name}
-          />
-          <label htmlFor="last_name">Last Name</label>
-          <input
-            name="last_name"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.last_name}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.email}
-          />
-          <label htmlFor="photo_url">Photo URL</label>
-          <input
-            name="photo_url"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.photo_url}
-          />
-          <label htmlFor="password">Re-enter Password</label>
-          <input
-            name="password"
-            type="text"
-            onChange={this.handleChange}
-            value={this.state.password}
-          />
-          <button type="submit">Submit</button>
+          <div className="form-group">
+            <label htmlFor="username" className="font-weight-bold">
+              Username
+            </label>
+            <div>{this.props.user.username}</div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="first_name" className="font-weight-bold">
+              First Name
+            </label>
+            <input
+              name="first_name"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.first_name}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="last_name" className="font-weight-bold">
+              Last Name
+            </label>
+            <input
+              name="last_name"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.last_name}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email" className="font-weight-bold">
+              Email
+            </label>
+            <input
+              name="email"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.email}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="photo_url" className="font-weight-bold">
+              Photo URL
+            </label>
+            <input
+              name="photo_url"
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.photo_url}
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="font-weight-bold">
+              Re-enter Password
+            </label>
+            <input
+              name="password"
+              type="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+              className="form-control"
+            />
+          </div>
+          <button
+            type="submit"
+            className={
+              this.state.password.length > 0
+                ? 'btn btn-primary btn-lg btn-block'
+                : 'btn btn-primary btn-lg btn-block disabled'
+            }
+          >
+            Submit
+          </button>
         </form>
       </div>
     );

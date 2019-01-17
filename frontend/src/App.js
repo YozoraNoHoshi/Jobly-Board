@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import Routes from './Routes';
-import './App.css';
+// import './App.css';
 import Nav from './Nav';
 import JoblyApi from './JoblyApi';
 
@@ -56,17 +56,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Nav
-          token={this.state.token}
-          updateToken={this.updateToken}
-          user={this.state.user}
-        />
-        <Routes
-          token={this.state.token}
-          user={this.state.user}
-          loginSignUp={this.loginSignUp}
-          editProfile={this.editProfile}
-        />
+        <div>
+          <Nav
+            token={this.state.token}
+            updateToken={this.updateToken}
+            user={this.state.user}
+          />
+        </div>
+        <div className="d-flex justify-content-center">
+          <Routes
+            token={this.state.token}
+            user={this.state.user}
+            loginSignUp={this.loginSignUp}
+            editProfile={this.editProfile}
+          />
+        </div>
       </div>
     );
   }

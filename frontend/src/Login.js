@@ -24,7 +24,6 @@ class Login extends Component {
   handleSubmit = async evt => {
     evt.preventDefault();
     let { login, ...state } = this.state;
-    console.log(this.state);
     let success = await this.props.loginSignUp(state, login);
     if (success) this.props.history.push('/');
   };
@@ -39,42 +38,71 @@ class Login extends Component {
   renderSignup = () => {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="username"
-          value={this.state.username}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="password"
-          value={this.state.password}
-        />
-        <label htmlFor="first_name">First Name</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="first_name"
-          value={this.state.first_name}
-        />
-        <label htmlFor="last_name">lastName</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="last_name"
-          value={this.state.last_name}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="email"
-          value={this.state.email}
-        />
-        <button type="submit">Submit</button>
+        <div className="form-group">
+          <label htmlFor="username" className="font-weight-bold">
+            Username
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="username"
+            value={this.state.username}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password" className="font-weight-bold">
+            Password
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="password"
+            value={this.state.password}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="first_name" className="font-weight-bold">
+            First Name
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="first_name"
+            value={this.state.first_name}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="last_name" className="font-weight-bold">
+            Last Name
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="last_name"
+            value={this.state.last_name}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email" className="font-weight-bold">
+            Email
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="email"
+            value={this.state.email}
+            className="form-control"
+          />
+        </div>
+        <div className="d-flex justify-content-end">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
       </form>
     );
   };
@@ -82,33 +110,67 @@ class Login extends Component {
   renderLogin = () => {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="username"
-          value={this.state.username}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name="password"
-          value={this.state.password}
-        />
-        <button type="submit">Submit</button>
+        <div className="form-group">
+          <label htmlFor="username" className="font-weight-bold">
+            Username
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="username"
+            value={this.state.username}
+            className="form-control"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password" className="font-weight-bold">
+            Password
+          </label>
+          <input
+            type="text"
+            onChange={this.handleChange}
+            name="password"
+            value={this.state.password}
+            className="form-control"
+          />
+        </div>
+        <div className="d-flex justify-content-end">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
       </form>
     );
   };
 
   render() {
     return (
-      <div className="Login">
-        <div>
-          <div onClick={this.handleClick}>Login</div>
-          <div onClick={this.handleClick}>Sign Up</div>
+      <div className="Login d-flex flex-column col-3 mt-3">
+        <div className="d-flex flex-row justify-content-end">
+          <div
+            onClick={this.handleClick}
+            className={
+              this.state.login
+                ? 'btn btn-primary login-button active'
+                : 'btn btn-primary login-button'
+            }
+          >
+            Login
+          </div>
+          <div
+            onClick={this.handleClick}
+            className={
+              !this.state.login
+                ? 'btn btn-primary signup-button active'
+                : 'btn btn-primary signup-button'
+            }
+          >
+            Sign Up
+          </div>
         </div>
-        {this.state.login ? this.renderLogin() : this.renderSignup()}
+        <div className="border rounded p-3">
+          {this.state.login ? this.renderLogin() : this.renderSignup()}
+        </div>
       </div>
     );
   }

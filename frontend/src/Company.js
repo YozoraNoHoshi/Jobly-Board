@@ -9,8 +9,8 @@ class Company extends Component {
   }
 
   async componentDidMount() {
+    console.log(this.props);
     try {
-      console.log(this.props);
       let company = await JoblyApi.getCompany(this.props.match.params.company);
       this.setState({ company });
     } catch (error) {}
@@ -42,7 +42,11 @@ class Company extends Component {
   };
 
   render() {
-    return this.state.company ? this.renderContent() : <div>Now Loading</div>;
+    return this.state.company.handle ? (
+      this.renderContent()
+    ) : (
+      <div>Now Loading</div>
+    );
   }
 }
 

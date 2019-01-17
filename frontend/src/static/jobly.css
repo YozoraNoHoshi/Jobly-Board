@@ -1,0 +1,40 @@
+.signup-button {
+  border-radius: 0;
+  border-top-right-radius: 5px;
+}
+
+.login-button {
+  border-radius: 0;
+  border-top-left-radius: 5px;
+}
+
+.search-submit {
+  border-radius: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.search-input {
+  border-radius: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.company-logo>img {
+  height: 50px;
+  width: 50px;
+}
+
+.CompanyCard>a {
+  text-decoration: none;
+  color: black;
+}
+
+.CompanyCard>a:hover {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.CompanyCard:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}

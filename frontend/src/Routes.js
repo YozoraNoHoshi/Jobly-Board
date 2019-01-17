@@ -105,17 +105,31 @@ class Routes extends Component {
         <Route
           exact
           path="/profile"
-          render={props =>
-            this.props.token ? (
-              <Profile
-                editProfile={this.props.editProfile}
+          render={
+            props => (
+              <PrivateRoute
                 token={this.props.token}
-                user={this.props.user}
-                {...props}
+                component={
+                  <Profile
+                    editProfile={this.props.editProfile}
+                    token={this.props.token}
+                    user={this.props.user}
+                    {...props}
+                  />
+                }
               />
-            ) : (
-              <Redirect to="/login" />
             )
+
+            // this.props.token ? (
+            //   <Profile
+            //     editProfile={this.props.editProfile}
+            //     token={this.props.token}
+            //     user={this.props.user}
+            //     {...props}
+            //   />
+            // ) : (
+            //   <Redirect to="/login" />
+            // )
           }
         />
         <Redirect to="/" />

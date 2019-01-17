@@ -22,18 +22,21 @@ class CompanyCard extends Component {
 
   render() {
     return (
-      <Link to={`/companies/${this.props.company.handle}`}>
-        <div className="CompanyCard">
-          <div>{this.props.company.name}</div>
-          <img
-            src={
-              this.props.company.logo_url ? this.props.company.logo_url : logo
-            }
-            alt={`${this.props.company.name} Logo`}
-          />
+      <div className="CompanyCard border mt-2 p-2">
+        <Link to={`/companies/${this.props.company.handle}`}>
+          <div className="company-logo d-flex justify-content-between pt-1 pb-3">
+            <span className="font-weight-bold">{this.props.company.name}</span>
+            <img
+              src={
+                this.props.company.logo_url ? this.props.company.logo_url : logo
+              }
+              alt={`${this.props.company.name} Logo`}
+            />
+          </div>
+
           <p>{this.props.company.description}</p>
-        </div>
-      </Link>
+        </Link>
+      </div>
     );
   }
 }

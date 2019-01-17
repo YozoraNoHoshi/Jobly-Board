@@ -26,14 +26,13 @@ class CompanyList extends Component {
 
   renderCompanies = companies => {
     return companies.map(c => {
-      console.log(c.handle);
       return <CompanyCard key={c.handle} company={c} />;
     });
   };
 
   renderContent = () => {
     return (
-      <div className="CompanyList">
+      <div className="CompanyList col-8">
         <Search />
         {this.renderCompanies(this.state.companies)}
       </div>
