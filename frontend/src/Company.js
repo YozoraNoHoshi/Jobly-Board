@@ -9,7 +9,6 @@ class Company extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props);
     try {
       let company = await JoblyApi.getCompany(this.props.match.params.company);
       this.setState({ company });
@@ -28,7 +27,7 @@ class Company extends Component {
 
   renderJobs = jobs => {
     return jobs.map(j => {
-      return <JobCard key={j.id} job={j} />;
+      return <JobCard key={j.id} job={j} user={this.props.user} />;
     });
   };
   renderContent = () => {

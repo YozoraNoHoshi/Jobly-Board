@@ -54,7 +54,7 @@ class Nav extends Component {
   render() {
     return (
       <div className="Nav">
-        <nav className="navbar navbar-expand-lg navbar-light border-bottom">
+        <nav className="navbar d-flex navbar-expand-lg navbar-light border-bottom">
           <NavLink className="navbar-brand" exact to="/">
             Jobly
           </NavLink>

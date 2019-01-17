@@ -62,3 +62,15 @@ body {
 .nav-link {
   cursor: pointer;
 }
+
+.Profile {
+  background-color: white;
+}
+
+.Home {
+  height: 80vh;
+}
+
+.login-form {
+  background-color: white;
+}

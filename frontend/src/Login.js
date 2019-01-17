@@ -55,7 +55,7 @@ class Login extends Component {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             onChange={this.handleChange}
             name="password"
             value={this.state.password}
@@ -127,7 +127,7 @@ class Login extends Component {
             Password
           </label>
           <input
-            type="text"
+            type="password"
             onChange={this.handleChange}
             name="password"
             value={this.state.password}
@@ -168,7 +168,7 @@ class Login extends Component {
             Sign Up
           </div>
         </div>
-        <div className="border rounded p-3">
+        <div className="login-form border rounded p-3">
           {this.state.login ? this.renderLogin() : this.renderSignup()}
         </div>
       </div>

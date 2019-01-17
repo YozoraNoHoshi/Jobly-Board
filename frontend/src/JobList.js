@@ -25,7 +25,7 @@ class JobList extends Component {
   };
 
   renderJobs = jobs => {
-    return jobs.map(j => <JobCard key={j.id} job={j} />);
+    return jobs.map(j => <JobCard key={j.id} job={j} user={this.props.user} />);
   };
 
   renderContent = () => {

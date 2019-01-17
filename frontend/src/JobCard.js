@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+import JoblyApi from './JoblyApi';
 
 class JobCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { apply: false };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if (
+      this.props.user.jobs.find(job => {
+        return job.id === this.props.job.id;
+      })
+    ) {
+      this.setState({ apply: true });
+    }
+  }
 
   handleChange = evt => {
     this.setState({
@@ -14,8 +23,13 @@ class JobCard extends Component {
     });
   };
 
-  handleClick = evt => {
+  handleClick = async evt => {
     evt.preventDefault();
+    let response = await JoblyApi.applyJob(this.props.job.id);
+
+    if (response) {
+      this.setState({ apply: true });
+    }
   };
 
   render() {
@@ -25,7 +39,18 @@ class JobCard extends Component {
         <div>Salary: {this.props.job.salary}</div>
         <div>Equity: {this.props.job.equity}</div>
         <div className="d-flex justify-content-end">
-          <button className="btn btn-danger font-weight-bold">APPLY</button>
+          {!this.state.apply ? (
+            <button
+              onClick={this.handleClick}
+              className="btn btn-danger font-weight-bold"
+            >
+              APPLY
+            </button>
+          ) : (
+            <button className="btn btn-danger font-weight-bold disabled">
+              APPLIED
+            </button>
+          )}
         </div>
       </div>
     );

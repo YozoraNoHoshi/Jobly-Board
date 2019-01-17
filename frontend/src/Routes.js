@@ -11,7 +11,11 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" render={props => <Home {...props} />} />
+        <Route
+          exact
+          path="/"
+          render={props => <Home {...props} token={this.props.token} />}
+        />
         <Route
           exact
           path="/companies"
@@ -29,7 +33,14 @@ class Routes extends Component {
           render={props => (
             <PrivateRoute
               token={this.props.token}
-              component={<Company token={this.props.token} {...props} />}
+              user={this.props.user}
+              component={
+                <Company
+                  token={this.props.token}
+                  {...props}
+                  user={this.props.user}
+                />
+              }
             />
           )}
         />
@@ -39,7 +50,14 @@ class Routes extends Component {
           render={props => (
             <PrivateRoute
               token={this.props.token}
-              component={<JobList token={this.props.token} {...props} />}
+              user={this.props.user}
+              component={
+                <JobList
+                  token={this.props.token}
+                  {...props}
+                  user={this.props.user}
+                />
+              }
             />
           )}
         />

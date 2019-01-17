@@ -20,7 +20,6 @@ class PrivateRoute extends Component {
   };
 
   render() {
-    console.log(this.props.token);
     return this.props.token !== null ? (
       this.props.component
     ) : (
