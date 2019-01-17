@@ -26,8 +26,8 @@ class Search extends Component {
   render() {
     return (
       <div className="Search mt-3">
-        <form onSubmit={this.handleSubmit} className="form-inline">
-          <div className="form-group col-12">
+        <form onSubmit={this.handleSubmit} className="form">
+          <div className="form-group d-flex flex-nowrap">
             <input
               type="text"
               placeholder="Enter Search term"

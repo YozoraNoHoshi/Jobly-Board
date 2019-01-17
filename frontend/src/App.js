@@ -8,7 +8,7 @@ import JoblyApi from './JoblyApi';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { token: '', user: {} };
+    this.state = { token: undefined, user: {} };
   }
 
   componentDidMount() {
@@ -24,7 +24,7 @@ class App extends Component {
       this.setState({ token, user });
       return true;
     } else {
-      this.setState({ token: '', user: {} });
+      this.setState({ token: undefined, user: {} });
       return false;
     }
   };
@@ -56,13 +56,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div>
-          <Nav
-            token={this.state.token}
-            updateToken={this.updateToken}
-            user={this.state.user}
-          />
-        </div>
+        <Nav
+          token={this.state.token}
+          updateToken={this.updateToken}
+          user={this.state.user}
+        />
         <div className="d-flex justify-content-center">
           <Routes
             token={this.state.token}

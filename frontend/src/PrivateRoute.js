@@ -20,7 +20,12 @@ class PrivateRoute extends Component {
   };
 
   render() {
-    return this.props.token ? this.props.component : <Redirect to="/login" />;
+    console.log(this.props.token);
+    return this.props.token !== null ? (
+      this.props.component
+    ) : (
+      <Redirect to="/login" />
+    );
   }
 }
 
