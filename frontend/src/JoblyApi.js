@@ -5,10 +5,12 @@ class JoblyApi {
     console.debug('API Call:', endpoint, params, verb);
     // If not GET request pass the data as the 4th argument
 
-    params._token = // for now, hardcode token for "testuser"
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6' +
-      'InRlc3R1c2VyIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NDE1N' +
-      'jQ2Nzl9.LYDHSkl81gEm7jfHv9wJhzD4ndpuBkSzBan8Nirb6UY';
+    // let _token = // for now, hardcode token for "testuser"
+    //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6' +
+    //   'InRlc3R1c2VyIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE1NDE1N' +
+    //   'jQ2Nzl9.LYDHSkl81gEm7jfHv9wJhzD4ndpuBkSzBan8Nirb6UY';
+    params._token = localStorage.getItem('token');
+
     try {
       return (await axios({
         method: verb,
@@ -27,6 +29,10 @@ class JoblyApi {
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
+  static async getUser(handle) {
+    let res = await this.request(`users/${handle}`);
+    return res.user;
+  }
   static async getCompanies() {
     let res = await this.request(`companies`);
     return res.companies;
@@ -37,6 +43,14 @@ class JoblyApi {
   }
   static async signUpUser(data) {
     let res = await this.request(`users`, data, 'POST');
+    return res.token;
+  }
+  static async loginUser(data) {
+    let res = await this.request(`login`, data, 'POST');
+    return res.token;
+  }
+  static async updateUser(handle, data) {
+    let res = await this.request(`users/${handle}`, data, 'PATCH');
     return res.token;
   }
 }

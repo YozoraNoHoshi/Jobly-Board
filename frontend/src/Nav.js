@@ -19,6 +19,11 @@ class Nav extends Component {
     evt.preventDefault();
   };
 
+  handleLogout = () => {
+    localStorage.removeItem('token');
+    this.props.updateToken();
+  };
+
   renderLoggedIn = () => {
     return (
       <React.Fragment>
@@ -31,9 +36,7 @@ class Nav extends Component {
         <NavLink exact to="/profile">
           Profile
         </NavLink>
-        <NavLink exact to="/">
-          Logout
-        </NavLink>
+        <span onClick={this.handleLogout}>Logout</span>
       </React.Fragment>
     );
   };
@@ -44,10 +47,10 @@ class Nav extends Component {
         <NavLink exact to="/">
           Jobly
         </NavLink>
-        {this.props.loggedIn ? (
+        {this.props.token ? (
           this.renderLoggedIn()
         ) : (
-          <NavLink exact to="/">
+          <NavLink exact to="/login">
             Login
           </NavLink>
         )}
@@ -56,9 +59,7 @@ class Nav extends Component {
   }
 }
 
-Nav.defaultProps = {
-  loggedIn: true
-};
+Nav.defaultProps = {};
 
 Nav.propTypes = {};
 
