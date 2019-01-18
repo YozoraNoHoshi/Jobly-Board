@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { search: '' };
+    this.debouncedSearch = this.debouncedSearch.bind(this);
   }
 
-  handleChange = evt => {
-    this.setState({
+  debouncedSearch = _.debounce(state => this.props.search(state), 300);
+
+  handleChange = async evt => {
+    await this.setState({
       [evt.target.name]: evt.target.value
     });
+
+    this.debouncedSearch(this.state);
   };
 
   handleSubmit = evt => {
