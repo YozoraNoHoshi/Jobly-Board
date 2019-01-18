@@ -17,13 +17,21 @@ class Routes extends Component {
           path="/"
           render={props => <Home {...props} token={this.props.token} />}
         />
+
         <Route
           exact
           path="/companies"
           render={props => (
             <PrivateRoute
               token={this.props.token}
-              component={<CompanyList token={this.props.token} {...props} />}
+              component={
+                <CompanyList
+                  token={this.props.token}
+                  alert={this.props.alert}
+                  alertMsg={this.props.alertMsg}
+                  {...props}
+                />
+              }
             />
           )}
         />
@@ -34,34 +42,36 @@ class Routes extends Component {
           render={props => (
             <PrivateRoute
               token={this.props.token}
-              user={this.props.user}
               component={
                 <Company
+                  alert={this.props.alert}
+                  alertMsg={this.props.alertMsg}
                   token={this.props.token}
-                  {...props}
                   user={this.props.user}
+                  {...props}
                 />
               }
             />
           )}
         />
+
         <Route
           exact
           path="/jobs"
           render={props => (
             <PrivateRoute
               token={this.props.token}
-              user={this.props.user}
               component={
                 <JobList
                   token={this.props.token}
-                  {...props}
                   user={this.props.user}
+                  {...props}
                 />
               }
             />
           )}
         />
+
         <Route
           exact
           path="/login"
@@ -69,10 +79,16 @@ class Routes extends Component {
             this.props.token ? (
               <Redirect to="/" />
             ) : (
-              <Login loginSignUp={this.props.loginSignUp} {...props} />
+              <Login
+                alert={this.props.alert}
+                alertMsg={this.props.alertMsg}
+                loginSignUp={this.props.loginSignUp}
+                {...props}
+              />
             )
           }
         />
+
         <Route
           exact
           path="/profile"
@@ -90,6 +106,7 @@ class Routes extends Component {
             />
           )}
         />
+
         <Redirect to="/" />
       </Switch>
     );
@@ -98,8 +115,9 @@ class Routes extends Component {
 
 Routes.defaultProps = {
   token: null,
-  editProfile: console.log,
+  alert: '',
   user: {},
+  editProfile: console.log,
   loginSignUp: console.log
 };
 export default Routes;

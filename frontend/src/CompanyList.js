@@ -11,8 +11,12 @@ class CompanyList extends Component {
   }
 
   async componentDidMount() {
-    const companies = await JoblyApi.getCompanies();
-    this.setState({ companies });
+    try {
+      const companies = await JoblyApi.getCompanies();
+      this.setState({ companies });
+    } catch (error) {
+      this.props.setAlert();
+    }
   }
 
   renderCompanies = companies => {
@@ -26,9 +30,15 @@ class CompanyList extends Component {
   };
 
   renderContent = () => {
+    let alert;
+    if (this.props.alertMsg.length > 0) {
+      console.log(this.props.alertMsg);
+      alert = <Alert classes="alert-danger" message={this.props.alertMsg} />;
+    }
     return (
       <div className="CompanyList col-8">
         <Search search={this.search} />
+        {alert}
         {this.renderCompanies(this.state.companies)}
       </div>
     );
@@ -44,7 +54,9 @@ class CompanyList extends Component {
   }
 }
 
-CompanyList.defaultProps = {};
+CompanyList.defaultProps = {
+  alert: ''
+};
 
 CompanyList.propTypes = {};
 

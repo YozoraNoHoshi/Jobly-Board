@@ -10,13 +10,19 @@ class App extends Component {
     this.state = {
       token: localStorage.getItem('token'),
       user: {},
-      loaded: false
+      loaded: false,
+      alert: ''
     };
   }
 
   async componentDidMount() {
     await this.updateToken();
   }
+
+  setAlert = alert => {
+    console.log(alert);
+    this.setState({ alert });
+  };
 
   updateToken = async () => {
     let token = localStorage.getItem('token');
@@ -68,6 +74,8 @@ class App extends Component {
         />
         <div className="d-flex justify-content-center">
           <Routes
+            alert={this.setAlert}
+            alertMsg={this.state.alert}
             token={this.state.token}
             user={this.state.user}
             loginSignUp={this.loginSignUp}

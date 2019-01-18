@@ -12,7 +12,10 @@ class Company extends Component {
     try {
       let company = await JoblyApi.getCompany(this.props.match.params.company);
       this.setState({ company });
-    } catch (error) {}
+    } catch (error) {
+      this.props.alert(error);
+      this.props.history.push('/companies');
+    }
   }
 
   renderJobs = jobs => {

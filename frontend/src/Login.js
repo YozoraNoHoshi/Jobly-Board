@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Alert from './Alert';
 
 class Login extends Component {
   constructor(props) {
@@ -23,9 +24,15 @@ class Login extends Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    let { login, ...state } = this.state;
-    let success = await this.props.loginSignUp(state, login);
-    if (success) this.props.history.push('/');
+    let { login, alert, ...state } = this.state;
+    try {
+      let success = await this.props.loginSignUp(state, login);
+      if (success) {
+        this.props.history.push('/');
+      }
+    } catch (error) {
+      this.props.alert(error);
+    }
   };
 
   handleClick = evt => {
@@ -144,6 +151,9 @@ class Login extends Component {
   };
 
   render() {
+    let alert;
+    if (this.props.alertMsg.length > 0)
+      alert = <Alert message={this.props.alertMsg} classes="alert-danger" />;
     return (
       <div className="Login d-flex flex-column col-3 mt-3">
         <div className="d-flex flex-row justify-content-end">
@@ -171,6 +181,7 @@ class Login extends Component {
         <div className="login-form border rounded p-3">
           {this.state.login ? this.renderLogin() : this.renderSignup()}
         </div>
+        {alert}
       </div>
     );
   }
