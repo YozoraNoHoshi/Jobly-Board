@@ -8,11 +8,10 @@ class Profile extends Component {
       last_name: this.props.user.last_name,
       email: this.props.user.email,
       photo_url: this.props.user.photo_url || '',
-      password: ''
+      password: '',
+      confirm_password: ''
     };
   }
-
-  componentDidMount() {}
 
   handleChange = evt => {
     this.setState({
@@ -22,11 +21,14 @@ class Profile extends Component {
 
   handleSubmit = async evt => {
     evt.preventDefault();
-    let { photo_url, ...state } = this.state;
+    let { photo_url, confirm_password, password, ...state } = this.state;
     if (photo_url) {
       state.photo_url = photo_url;
     }
-    let success = await this.props.editProfile(state);
+    if (password) {
+      state.password = password;
+    }
+    let success = await this.props.editProfile(state, confirm_password);
     if (success) this.props.history.push('/');
   };
 
@@ -40,6 +42,18 @@ class Profile extends Component {
               Username
             </label>
             <div>{this.props.user.username}</div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="password" className="font-weight-bold">
+              Password
+            </label>
+            <input
+              name="password"
+              type="password"
+              onChange={this.handleChange}
+              value={this.state.password}
+              className="form-control"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="first_name" className="font-weight-bold">
@@ -90,21 +104,21 @@ class Profile extends Component {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="password" className="font-weight-bold">
+            <label htmlFor="confirm_password" className="font-weight-bold">
               Re-enter Password
             </label>
             <input
-              name="password"
+              name="confirm_password"
               type="password"
               onChange={this.handleChange}
-              value={this.state.password}
+              value={this.state.confirm_password}
               className="form-control"
             />
           </div>
           <button
             type="submit"
             className={
-              this.state.password.length > 0
+              this.state.confirm_password.length > 0
                 ? 'btn btn-primary btn-lg btn-block'
                 : 'btn btn-primary btn-lg btn-block disabled'
             }

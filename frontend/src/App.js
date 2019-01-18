@@ -45,12 +45,14 @@ class App extends Component {
     return this.updateToken();
   };
 
-  editProfile = async formData => {
+  editProfile = async (formData, confirmPassword) => {
     let username = this.state.user.username;
-    let { password, ...data } = formData;
-    let token = await JoblyApi.loginUser({ username, password });
+    let token = await JoblyApi.loginUser({
+      username,
+      password: confirmPassword
+    });
     if (token) {
-      await JoblyApi.updateUser(username, data);
+      await JoblyApi.updateUser(username, formData);
       return this.updateToken();
     }
     return false;

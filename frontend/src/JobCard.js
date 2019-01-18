@@ -16,12 +16,6 @@ class JobCard extends Component {
     }
   }
 
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
   handleClick = async evt => {
     evt.preventDefault();
     let response = await JoblyApi.applyJob(this.props.job.id);

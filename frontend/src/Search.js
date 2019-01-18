@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import JoblyApi from './JoblyApi';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { search: '' };
   }
-
-  componentDidMount() {}
 
   handleChange = evt => {
     this.setState({

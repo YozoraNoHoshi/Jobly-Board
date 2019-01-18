@@ -15,21 +15,12 @@ class Company extends Component {
     } catch (error) {}
   }
 
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-  };
-
   renderJobs = jobs => {
     return jobs.map(j => {
       return <JobCard key={j.id} job={j} user={this.props.user} />;
     });
   };
+
   renderContent = () => {
     return (
       <div className="Company col-6 mt-2">

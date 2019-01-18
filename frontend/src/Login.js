@@ -13,7 +13,7 @@ class Login extends Component {
     };
   }
 
-  componentDidMount() {}
+  // componentDidMount() {}
 
   handleChange = evt => {
     this.setState({

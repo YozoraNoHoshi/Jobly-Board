@@ -15,16 +15,6 @@ class CompanyList extends Component {
     this.setState({ companies });
   }
 
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-  };
-
   renderCompanies = companies => {
     return companies.length > 0 ? (
       companies.map(c => {
@@ -46,7 +36,6 @@ class CompanyList extends Component {
 
   search = async search => {
     let companies = await JoblyApi.getCompanies(search);
-
     this.setState({ companies });
   };
 

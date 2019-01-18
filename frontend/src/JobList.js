@@ -15,16 +15,6 @@ class JobList extends Component {
     this.setState({ jobs });
   }
 
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-  };
-
   renderJobs = jobs => {
     return jobs.length > 0 ? (
       jobs.map(j => {

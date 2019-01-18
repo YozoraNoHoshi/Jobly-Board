@@ -2,23 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
-  handleChange = evt => {
-    this.setState({
-      [evt.target.name]: evt.target.value
-    });
-  };
-
-  handleSubmit = evt => {
-    evt.preventDefault();
-  };
-
   handleLogout = () => {
     localStorage.removeItem('token');
     this.props.updateToken();
