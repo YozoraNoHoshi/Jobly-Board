@@ -8,13 +8,11 @@ class JobCard extends Component {
   }
 
   componentDidMount() {
-    if (this.props.user.jobs) {
-      let appliedJobs = this.props.user.jobs.find(job => {
-        return job.id === this.props.job.id;
-      });
-      if (appliedJobs) {
-        this.setState({ apply: true });
-      }
+    let appliedJobs = this.props.user.jobs.find(job => {
+      return job.id === this.props.job.id;
+    });
+    if (appliedJobs) {
+      this.setState({ apply: true });
     }
   }
 

@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import Routes from './Routes';
-// import './App.css';
 import Nav from './Nav';
 import JoblyApi from './JoblyApi';
+import Alert from './Alert';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { token: localStorage.getItem('token'), user: {} };
+    this.state = {
+      token: localStorage.getItem('token'),
+      user: {},
+      loaded: false
+    };
   }
 
   async componentDidMount() {
@@ -21,10 +24,10 @@ class App extends Component {
       let decodeToken = token.split('.')[1];
       let { username } = JSON.parse(atob(decodeToken));
       let user = await JoblyApi.getUser(username);
-      this.setState({ token, user });
+      this.setState({ token, user, loaded: true });
       return true;
     } else {
-      this.setState({ token: undefined, user: {} });
+      this.setState({ token: undefined, user: {}, loaded: true });
       return false;
     }
   };
@@ -54,7 +57,7 @@ class App extends Component {
   };
 
   render() {
-    return (
+    return this.state.loaded ? (
       <div className="App">
         <Nav
           token={this.state.token}
@@ -69,6 +72,10 @@ class App extends Component {
             editProfile={this.editProfile}
           />
         </div>
+      </div>
+    ) : (
+      <div className="d-flex justify-content-center">
+        <Alert message="Loading data!" classes="alert-primary" />
       </div>
     );
   }

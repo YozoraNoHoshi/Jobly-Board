@@ -70,11 +70,9 @@ class Nav extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav ml-auto">
               {this.props.token ? (
-                <div className="d-flex justify-content-end">
-                  {this.renderLoggedIn()}
-                </div>
+                <div className="d-flex ">{this.renderLoggedIn()}</div>
               ) : (
                 <li className="nav-item">
                   <NavLink className="nav-link" exact to="/login">

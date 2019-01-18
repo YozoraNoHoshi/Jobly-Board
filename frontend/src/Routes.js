@@ -7,6 +7,7 @@ import JobList from './JobList';
 import Login from './Login';
 import Profile from './Profile';
 import PrivateRoute from './PrivateRoute';
+
 class Routes extends Component {
   render() {
     return (

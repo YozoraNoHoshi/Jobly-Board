@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import JoblyApi from './JoblyApi';
 import JobCard from './JobCard';
+import Alert from './Alert';
 import Search from './Search';
 
 class JobList extends Component {
@@ -25,7 +26,13 @@ class JobList extends Component {
   };
 
   renderJobs = jobs => {
-    return jobs.map(j => <JobCard key={j.id} job={j} user={this.props.user} />);
+    return jobs.length > 0 ? (
+      jobs.map(j => {
+        return <JobCard key={j.id} job={j} user={this.props.user} />;
+      })
+    ) : (
+      <Alert message="No jobs found!" classes="alert-warning" />
+    );
   };
 
   renderContent = () => {

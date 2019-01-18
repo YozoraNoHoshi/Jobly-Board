@@ -24,7 +24,7 @@ class CompanyCard extends Component {
     return (
       <div className="CompanyCard border mt-2 p-2">
         <Link to={`/companies/${this.props.company.handle}`}>
-          <div className="company-logo d-flex justify-content-between pt-1 pb-3">
+          <div className="company-logo d-flex justify-content-between pl-3 pt-2">
             <span className="font-weight-bold">{this.props.company.name}</span>
             <img
               src={
@@ -33,8 +33,9 @@ class CompanyCard extends Component {
               alt={`${this.props.company.name} Logo`}
             />
           </div>
-
-          <p>{this.props.company.description}</p>
+          <div className="col-10">
+            <p>{this.props.company.description}</p>
+          </div>
         </Link>
       </div>
     );

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import CompanyCard from './CompanyCard';
 import Search from './Search';
+import Alert from './Alert';
 import JoblyApi from './JoblyApi';
 
 class CompanyList extends Component {
   constructor(props) {
     super(props);
-    this.state = { companies: [{}, {}] };
+    this.state = { companies: [] };
   }
 
   async componentDidMount() {
@@ -25,9 +26,13 @@ class CompanyList extends Component {
   };
 
   renderCompanies = companies => {
-    return companies.map(c => {
-      return <CompanyCard key={c.handle} company={c} />;
-    });
+    return companies.length > 0 ? (
+      companies.map(c => {
+        return <CompanyCard key={c.handle} company={c} />;
+      })
+    ) : (
+      <Alert message="No companies found!" classes="alert-warning" />
+    );
   };
 
   renderContent = () => {

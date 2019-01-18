@@ -43,10 +43,6 @@ class Search extends Component {
   }
 }
 
-Search.defaultProps = {
-  from: ''
-};
-
 Search.propTypes = {};
 
 export default Search;

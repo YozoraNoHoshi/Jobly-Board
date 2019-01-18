@@ -27,6 +27,7 @@
 
 .CompanyCard {
   background-color: white;
+  overflow: hidden;
 }
 
 .CompanyCard>a {
