@@ -20,8 +20,11 @@ class App extends Component {
   }
 
   setAlert = alert => {
-    console.log(alert);
     this.setState({ alert });
+  };
+
+  clearAlert = () => {
+    this.setState({ alert: '' });
   };
 
   updateToken = async () => {
@@ -75,6 +78,7 @@ class App extends Component {
         <div className="d-flex justify-content-center">
           <Routes
             alert={this.setAlert}
+            clearAlert={this.clearAlert}
             alertMsg={this.state.alert}
             token={this.state.token}
             user={this.state.user}

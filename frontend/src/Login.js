@@ -28,6 +28,7 @@ class Login extends Component {
     try {
       let success = await this.props.loginSignUp(state, login);
       if (success) {
+        this.props.clearAlert();
         this.props.history.push('/');
       }
     } catch (error) {

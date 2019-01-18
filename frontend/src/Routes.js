@@ -28,6 +28,7 @@ class Routes extends Component {
                 <CompanyList
                   token={this.props.token}
                   alert={this.props.alert}
+                  clearAlert={this.props.clearAlert}
                   alertMsg={this.props.alertMsg}
                   {...props}
                 />
@@ -45,6 +46,7 @@ class Routes extends Component {
               component={
                 <Company
                   alert={this.props.alert}
+                  clearAlert={this.props.clearAlert}
                   alertMsg={this.props.alertMsg}
                   token={this.props.token}
                   user={this.props.user}
@@ -82,6 +84,7 @@ class Routes extends Component {
               <Login
                 alert={this.props.alert}
                 alertMsg={this.props.alertMsg}
+                clearAlert={this.props.clearAlert}
                 loginSignUp={this.props.loginSignUp}
                 {...props}
               />

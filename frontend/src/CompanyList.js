@@ -32,7 +32,6 @@ class CompanyList extends Component {
   renderContent = () => {
     let alert;
     if (this.props.alertMsg.length > 0) {
-      console.log(this.props.alertMsg);
       alert = <Alert classes="alert-danger" message={this.props.alertMsg} />;
     }
     return (
